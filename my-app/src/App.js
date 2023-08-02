@@ -4,57 +4,107 @@ import Header from './components/Header';
 import BookTable from './components/BookTable';
 import DisplayBoard from './components/DisplayBoard';
 import CreateBook from './components/CreateBook';
-import { getAllBooks, createBook } from './services/BookService';
+import { getAllBooks, createBook, getAllTodos, createTodo } from './services/BookService';
 import Footer from './components/Footer';
 
 function App () {
 
-  const [bookShelf, setBookShelf] = useState({});
-  const [books, setBooks] = useState([]);
-  const [numberOfBooks, setNumberBooks] = useState(0);
+  // const [bookShelf, setBookShelf] = useState({});
+  // const [books, setBooks] = useState([]);
+  // const [numberOfBooks, setNumberBooks] = useState(0);
 
-  const handleSubmit = () => {
-      createBook(bookShelf)
+  // todo test
+  const [todoShelf, setTodoShelf] = useState({});
+  const [todos, setTodos] = useState([]);
+  const [numberOfTodos, setNumberTodos] = useState(0);
+
+
+  // const handleSubmit = () => {
+  //     createBook(bookShelf)
+  //       .then(() => {
+  //         setNumberBooks(numberOfBooks+1);
+  //     });
+  // }
+
+  // const getAllBook = () => {
+  //   getAllBooks()
+  //     .then(data => {
+  //       setBooks(data);
+  //       setNumberBooks(data.length);
+  //     });
+  // }
+
+  // const handleOnChangeForm = (e) => {
+  //     let inputData = bookShelf;
+  //     if (e.target.name === 'book') {
+  //       bookShelf.book = e.target.value;
+  //     } else if (e.target.name === 'category') {
+  //       bookShelf.category = e.target.value;
+  //     } else if (e.target.name === 'author') {
+  //       bookShelf.author = e.target.value;
+  //     }
+  //     setBookShelf(inputData);
+  // }
+
+  // todo test
+  const handleTodoSubmit = () => {
+      createTodo(todoShelf)
         .then(() => {
-          setNumberBooks(numberOfBooks+1);
+          setNumberTodos(numberOfTodos+1);
       });
   }
 
-  const getAllBook = () => {
-    getAllBooks()
+  const getAllTodo = () => {
+    getAllTodos()
       .then(data => {
-        setBooks(data);
-        setNumberBooks(data.length);
+        setTodos(data);
+        setNumberTodos(data.length);
       });
   }
 
-  const handleOnChangeForm = (e) => {
-      let inputData = bookShelf;
-      if (e.target.name === 'book') {
-        bookShelf.book = e.target.value;
+  const handleOnChangeTodoForm = (e) => {
+      let inputData = todoShelf;
+      if (e.target.name === 'todo') {
+        todoShelf.todo = e.target.value;
       } else if (e.target.name === 'category') {
-        bookShelf.category = e.target.value;
-      } else if (e.target.name === 'author') {
-        bookShelf.author = e.target.value;
+        todoShelf.category = e.target.value;
+      } else if (e.target.name === 'isComplete') {
+        todoShelf.isComplete = e.target.value;
       }
-      setBookShelf(inputData);
+      setTodoShelf(inputData);
   }
 
   
   return (
+    // <div className="main-wrapper">
+    //   <div className="main">
+    //     <Header />
+    //     <CreateBook 
+    //       bookShelf={bookShelf}
+    //       onChangeForm={handleOnChangeForm}
+    //       handleSubmit={handleSubmit}
+    //     />
+    //     <DisplayBoard 
+    //       numberOfBooks={numberOfBooks} 
+    //       getAllBook={getAllBook} 
+    //     />
+    //     <BookTable books={books} />
+    //     <Footer />
+    //   </div>
+    // </div>
     <div className="main-wrapper">
       <div className="main">
         <Header />
         <CreateBook 
-          bookShelf={bookShelf}
-          onChangeForm={handleOnChangeForm}
-          handleSubmit={handleSubmit}
+          todoShelf={todoShelf}
+          onChangeForm={handleOnChangeTodoForm}
+          handleSubmit={handleTodoSubmit}
         />
         <DisplayBoard 
-          numberOfBooks={numberOfBooks} 
-          getAllBook={getAllBook} 
+          numberOfTodos={numberOfTodos} 
+          getAllTodo={getAllTodo} 
         />
-        <BookTable books={books} />
+        <BookTable todos={todos} />
         <Footer />
       </div>
     </div>

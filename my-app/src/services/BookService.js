@@ -24,7 +24,7 @@ export const createTodo = async (data) => {
     const response = await fetch('/api2/todo', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({book: data})
+        body: JSON.stringify({todo: data})
       })
     return await response.json();
 }
